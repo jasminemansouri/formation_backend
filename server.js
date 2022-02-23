@@ -1,5 +1,6 @@
 const express = require('express');
-const connect = require('./config/db')
+require('./config/db');
+const port = process.env.PORT;
 const app = express();
 
 app.use(express.json());
@@ -18,4 +19,6 @@ app.use('/getmenuimage', express.static('./assets/menu_files'));
 
 
 
-app.listen(5000, () => { console.log(`Server is listening on port 5000`); });
+app.listen(port, () => {
+    console.log(`Server is listening on port : ${port}`);
+});
