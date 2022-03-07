@@ -2,10 +2,9 @@ const express = require('express');
 require('./config/db');
 const port = process.env.PORT;
 const app = express();
-
+const cors = require('cors')
 app.use(express.json());
-
-
+app.use(cors());
 const adminRoute = require('./src/routes/admin.routes');
 const blogRoute = require('./src/routes/blog.routes');
 const menuRoute = require('./src/routes/menu.routes');
