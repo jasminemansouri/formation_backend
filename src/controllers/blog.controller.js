@@ -24,7 +24,7 @@ exports.findAll = (req,res)=>
     {
         Blog.find()
         .then((success)=>{
-            console.log("all my blogs are : ",success);
+            // console.log("all my blogs are : ",success);
             res.send(success)
         })
         .catch((error)=>{
@@ -51,12 +51,19 @@ exports.updateBlog = (req,res)=>
     {
         const {id} = req.params;
         const {body}=req;
-        Blog.findOneAndUpdate({_id:id},body)
+        if (filen.length > 0) {
+            body.image = filen;
+        }
+        Blog.findOneAndUpdate({_id: id }, body)
         .then((success) => {
-            console.log(`le blog ${id} est modifié :) `, success);
+
+             console.log(`le blog ${id} est modifié :) `, success);
+            filen = '';
             res.send(success)
         })
         .catch((error) => {
+            console.log("newone"+error)
+
             res.send(error)
         })
 

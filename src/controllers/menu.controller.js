@@ -21,7 +21,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Menu.find()
         .then((success) => {
-            console.log("all my menus are : ", success);
+            // console.log("all my menus are : ", success);
             res.send(success)
         })
         .catch((error) => {
@@ -58,13 +58,16 @@ exports.findMenuByWeight = (req, res) => {
 exports.updateMenu = (req, res) => {
     const { id } = req.params;
     const { body } = req;
+    console.log('req'+ req);
+
     if (filen.length > 0) {
         body.img = filen;
     }
     Menu.findOneAndUpdate({ _id: id }, body)
         .then((success) => {
-            console.log(`le menu ${id} est modifié :) `, success);
+             console.log(`le menu ${id} est modifié :) `, success);
             filen = '';
+            console.log('body'+ body);
             res.send(success)
         })
         .catch((error) => {

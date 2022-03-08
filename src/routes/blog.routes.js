@@ -15,7 +15,7 @@ const upload = multer({ storage: BlogStorage });
 router.post('/',upload.any('image'), BlogController.create);
 router.get('/',BlogController.findAll);
 router.get('/:id',BlogController.findBlogById);
-router.put('/:id',BlogController.updateBlog);
+router.put('/:id',upload.any('image'),BlogController.updateBlog);
 router.delete('/:id',BlogController.deleteBlog);
 
 
